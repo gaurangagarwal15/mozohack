@@ -1,6 +1,7 @@
 const express = require("express");
 const Data = require("../models/data");
 const router = express.Router();
+const path = require("path");
 
 const puppeteer = require("puppeteer");
 const pdfTemplate = require("../prescription");
@@ -64,8 +65,7 @@ router.get("/patient/:id", async (req, res) => {
       format: "A4",
       printBackground: true,
     });
-    res.sendFile(`C:/Users/gaura/Desktop/mozohack/Backend/Prescription.pdf`);
-    // res.send(Promise.resolve());
+    res.sendFile(`${path.join(__dirname, "..")}/Prescription.pdf`);
   } catch (err) {
     res.send(Promise.reject());
   } finally {
