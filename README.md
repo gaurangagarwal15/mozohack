@@ -65,6 +65,6 @@ npm start
 #### Starting the backend
 
 ```
-cd backend
+cd Backend
 npm start
 ```
