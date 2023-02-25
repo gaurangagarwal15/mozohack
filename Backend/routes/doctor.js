@@ -7,7 +7,7 @@ const smtpTransport = nodemailer.createTransport({
   service: "Gmail",
   auth: {
     user: "find.roomy.otp@gmail.com",
-    pass: "tvffezplxkojfxux",
+    pass: "wlvfoikfgpcjanah",
   },
   tls: {
     rejectUnauthorized: false,
