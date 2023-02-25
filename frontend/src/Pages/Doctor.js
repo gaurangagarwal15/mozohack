@@ -29,6 +29,7 @@ export default function Doctor() {
   const [Time, setTime] = useState("");
   const [date, setDate] = useState("");
   const [result, setResult] = useState(1);
+  const [shareLink, setShareLink] = useState("");
 
   const [loading, setLoading] = useState(false);
 
@@ -91,6 +92,7 @@ export default function Doctor() {
       redirect: "follow",
     };
     formStep >= 2 && setLoading(true);
+
     fetch("http://localhost:5000/pdf", requestOptions)
       .then((response) => response.text())
       .then((data) => {
@@ -99,6 +101,16 @@ export default function Doctor() {
         setResult(result + 1);
       })
       .catch((error) => console.log("error", error));
+
+    if (formStep === 3) {
+      fetch("http://localhost:5000/api/data/new", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result?.result?._id);
+          setShareLink(result?.result?._id);
+        })
+        .catch((error) => console.log("error", error));
+    }
   };
 
   // useEffect(() => {
@@ -147,7 +159,7 @@ export default function Doctor() {
                 setDuration={setDuration}
               />
             )}
-            {formStep === 4 && <Share />}
+            {formStep === 4 && <Share shareLink={shareLink} />}
           </div>
           <div className="flex justify-between h-26">
             {formStep >= 1 && (

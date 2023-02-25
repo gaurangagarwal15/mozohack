@@ -1,9 +1,10 @@
 import { useState } from "react";
 import DisabledButtonLoading from "./DisabledBtnLoding";
 
-const Share = () => {
+const Share = ({ shareLink }) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [copied, setCopied] = useState(false);
   const sendMail = () => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -11,6 +12,10 @@ const Share = () => {
     var urlencoded = new URLSearchParams();
     urlencoded.append("email", email);
     urlencoded.append("pathPdf", "http://localhost:5000/fpdf");
+    urlencoded.append(
+      "link",
+      `http://localhost:5000/api/data/patient/${shareLink}`
+    );
 
     var requestOptions = {
       method: "POST",
@@ -33,6 +38,25 @@ const Share = () => {
   return (
     <>
       <h1 className="text-2xl font-semibold">Share the EHR</h1>
+      <div className="p-2 rounded border-2 border-blue-600 bg-blue-200 flex justify-between">
+        <a href={`http://localhost:5000/api/data/patient/${shareLink}`}>
+          http://localhost:5000/api/data/patient/{shareLink}
+        </a>
+        <button
+          onClick={() => {
+            setTimeout(() => {
+              navigator.clipboard.writeText(
+                `http://localhost:5000/api/data/patient/${shareLink}`
+              );
+              setCopied(true);
+            }, 2000);
+            setCopied(false);
+          }}
+          className="bg-blue-600 text-white p-1 rounded"
+        >
+          {copied ? "Copied !!" : "copy"}
+        </button>
+      </div>
       <div className="mb-6 mt-10">
         <label
           htmlFor="email"
