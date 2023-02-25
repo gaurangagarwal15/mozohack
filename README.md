@@ -58,7 +58,7 @@ We will therefore simplify and make prescription data entry comparable to handwr
 #### Starting the frontend
 
 ```
-cd frotned
+cd frotend
 npm start
 ```
 
