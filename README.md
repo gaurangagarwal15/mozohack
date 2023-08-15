@@ -20,7 +20,7 @@ We will therefore simplify and make prescription data entry comparable to handwr
     ├── README.md          <- The top-level README for developers using this project.
     │
     ├── emids-frontend
-    │       ├── package.json        <- Containing the required node modules start up scripts etc
+    │       ├── package.json        <- Containing the required node modules start-up scripts etc
     │       ├── postcss.config.js   <- Tailwind css file
     │       ├── tailwind.config.js  <- Tailwind css file
     │       ├── public
